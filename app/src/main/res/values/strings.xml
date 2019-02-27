@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SWAPISearcher</string>
+    <string name="Star_Wars">Star Wars</string>
+    <string name="loading_error_message">Woops.  We couldn\'t load your SWAPI Search.  Check your internet connection and try again.</string>
+    <string name="action_share">Share SWAPI</string>
+    <string name="action_location">Show SWAPI location</string>
+    <string name="action_settings">Settings</string>
+    <string name="share_chooser_title">Pick an app to share this SWAPI Search</string>
+
+
+</resources>
