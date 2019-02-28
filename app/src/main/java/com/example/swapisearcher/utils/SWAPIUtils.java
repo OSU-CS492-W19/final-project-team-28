@@ -20,8 +20,16 @@ public class SWAPIUtils {
     private final static String SWAPI_WOOKIE_WOOKIE = "wookiee";
 
     public static class SWAPIItem implements Serializable{
-        public static final String EXTRA_SWAPI_ITEM = "com.example.swapisearcher.utils.SWAPItem.SearchResult";
+        public static final String EXTRA_SWAPI_ITEM = "com.example.swapisearcher.utils.SWAPIItem.SearchResult";
         public String name;
+        public String height;
+        public String mass;
+        public String hair_color;
+        public String skin_color;
+        public String eye_color;
+        public String birth_year;
+        public String gender;
+
         //public String name;
     }
 
@@ -44,7 +52,13 @@ public class SWAPIUtils {
 
                 //String CharName = SWAPIListElem.getString("name");
                 swapiItem.name = SWAPIListElem.getString("name");
-
+                swapiItem.height = SWAPIListElem.getString("height");
+                swapiItem.mass = SWAPIListElem.getString("mass");
+                swapiItem.hair_color = SWAPIListElem.getString("hair_color");
+                swapiItem.skin_color = SWAPIListElem.getString("skin_color");
+                swapiItem.eye_color = SWAPIListElem.getString("eye_color");
+                swapiItem.birth_year = SWAPIListElem.getString("birth_year");
+                swapiItem.gender = SWAPIListElem.getString("gender");
 
                 SWAPIItemsList.add(swapiItem);
             }

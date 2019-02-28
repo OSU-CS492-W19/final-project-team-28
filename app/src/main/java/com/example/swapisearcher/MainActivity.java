@@ -183,12 +183,12 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
     public void onSWAPIItemClick(SWAPIUtils.SWAPIItem swapiItem) {
 
         //need to make SWAPI item detail Activity
-        /*
-        Intent intent = new Intent(this, SWAPIItemDetailActivity.class);
 
-        intent.putExtra(SWAPIUtils.SWAPIItem.EXTRA_SWAPI_ITEM, SWAPIItems);
+        Intent intent = new Intent(this, SWAPIDetailActivity.class);
+
+        intent.putExtra(SWAPIUtils.SWAPIItem.EXTRA_SWAPI_ITEM, swapiItem);
         startActivity(intent);
-        */
+
 
     }
 }
