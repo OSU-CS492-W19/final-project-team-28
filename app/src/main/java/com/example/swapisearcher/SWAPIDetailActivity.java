@@ -27,6 +27,7 @@ public class SWAPIDetailActivity extends AppCompatActivity {
     private TextView CharBirth_year;
     private TextView CharGender;
     private String units;
+    private double divisor;
 
     private SWAPIUtils.SWAPIItem mswapiItem;
 
@@ -41,8 +42,10 @@ public class SWAPIDetailActivity extends AppCompatActivity {
 
         if (forecastUnits.equals("Centimeters")){
             units = "cm";
+            divisor = 1;
         } else {
             units = "In";
+            divisor = 2.5;
         }
 
 
@@ -74,7 +77,7 @@ public class SWAPIDetailActivity extends AppCompatActivity {
     //fill in layout
     private void fillInLayoutText(SWAPIUtils.SWAPIItem swapitem) {
         String CharNaem = "Character: " + swapitem.name;
-        String CharHeihgt = "Height: " + swapitem.height + units;
+        String CharHeihgt = "Height: " + swapitem.height/divisor + units;
         String CharMsas = "Mass: " + swapitem.mass;
         String CharHair_coolr = "Hair Color: " + swapitem.hair_color;
         String CharSkin_coolr = "Skin Color: " + swapitem.skin_color;
