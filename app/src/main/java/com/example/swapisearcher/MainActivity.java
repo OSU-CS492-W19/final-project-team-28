@@ -132,6 +132,46 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
     public void refreshDisplay(){
 
+        //refresh
+
+        getSupportActionBar().setElevation(0);
+
+        //set header text
+        mSWAPIMainTV = findViewById(R.id.tv_forecast_location);
+        mSWAPIMainTV.setText("Characters");
+
+
+        //error checks
+        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
+        mLoadingErrorMessageTV = findViewById(R.id.tv_loading_error_message);
+
+        //recycle viewer
+        mForecastItemsRV = findViewById(R.id.rv_forecast_items);
+        swapiAdapter = new SWAPIAdapter(this);
+        mForecastItemsRV.setAdapter(swapiAdapter);
+
+        //loader manager
+        getSupportLoaderManager().initLoader(SWAPI_SEARCH_LOADER_ID , null, this);
+
+
+        //
+        mForecastItemsRV.setLayoutManager(new LinearLayoutManager(this ));
+        mForecastItemsRV.setHasFixedSize(true);
+
+        //load default prefs
+        //PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
+
+
+        //load SWAPI
+        //load
+        loadSWAPI();
+        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+
+
+        Log.d("refreshDisplay", "Refresh Display was called");
+        loadSWAPI();
+
+
     }
 
 

@@ -29,7 +29,7 @@ public class SWAPISearchLoader extends android.support.v4.content.AsyncTaskLoade
     protected void onStartLoading() {
         if (mSWAPISearchURL != null) {
             //forceLoad();
-            forceLoad();
+            //forceLoad();
 
             if (mSWAPIAdapter != null) {
                 Log.d(TAG, "Delivering cached results");
