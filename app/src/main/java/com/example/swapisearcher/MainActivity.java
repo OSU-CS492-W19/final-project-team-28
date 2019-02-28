@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -73,11 +74,16 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
     //refresh listener for preferences
         settings = PreferenceManager.getDefaultSharedPreferences(this);
-        /*
+
         listener = new SharedPreferences.OnSharedPreferenceChangeListener(){
 
-        }
-        */
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                refreshDisplay();
+            }
+        };
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         getSupportActionBar().setElevation(0);
 
@@ -109,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         mForecastItemsRV.setLayoutManager(new LinearLayoutManager(this ));
         mForecastItemsRV.setHasFixedSize(true);
 
+        //load default prefs
         //PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
 
 
@@ -123,6 +130,49 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
     }
 
+    public void refreshDisplay(){
+
+        //refresh
+
+        getSupportActionBar().setElevation(0);
+
+        //set header text
+        mSWAPIMainTV = findViewById(R.id.tv_forecast_location);
+        mSWAPIMainTV.setText("Characters");
+
+
+        //error checks
+        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
+        mLoadingErrorMessageTV = findViewById(R.id.tv_loading_error_message);
+
+        //recycle viewer
+        mForecastItemsRV = findViewById(R.id.rv_forecast_items);
+        swapiAdapter = new SWAPIAdapter(this);
+        mForecastItemsRV.setAdapter(swapiAdapter);
+
+        //loader manager
+        getSupportLoaderManager().initLoader(SWAPI_SEARCH_LOADER_ID , null, this);
+
+
+        //
+        mForecastItemsRV.setLayoutManager(new LinearLayoutManager(this ));
+        mForecastItemsRV.setHasFixedSize(true);
+
+        //load default prefs
+        //PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
+
+
+        //load SWAPI
+        //load
+        loadSWAPI();
+        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+
+
+        Log.d("refreshDisplay", "Refresh Display was called");
+        loadSWAPI();
+
+
+    }
 
 
     //load SWAPI method
@@ -190,5 +240,28 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         startActivity(intent);
 
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                showPreferences();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+//nav to pref bar
+    public void showPreferences(){
+        //navigate to prefs page
+        Intent preferences = new Intent(this, SettingsActivity.class);
+        startActivity(preferences);
     }
 }

@@ -22,7 +22,7 @@ public class SWAPIUtils {
     public static class SWAPIItem implements Serializable{
         public static final String EXTRA_SWAPI_ITEM = "com.example.swapisearcher.utils.SWAPIItem.SearchResult";
         public String name;
-        public String height;
+        public double height;
         public String mass;
         public String hair_color;
         public String skin_color;
@@ -52,7 +52,7 @@ public class SWAPIUtils {
 
                 //String CharName = SWAPIListElem.getString("name");
                 swapiItem.name = SWAPIListElem.getString("name");
-                swapiItem.height = SWAPIListElem.getString("height");
+                swapiItem.height = SWAPIListElem.getInt("height");
                 swapiItem.mass = SWAPIListElem.getString("mass");
                 swapiItem.hair_color = SWAPIListElem.getString("hair_color");
                 swapiItem.skin_color = SWAPIListElem.getString("skin_color");

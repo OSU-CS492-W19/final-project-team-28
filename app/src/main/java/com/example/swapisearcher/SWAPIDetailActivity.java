@@ -26,6 +26,8 @@ public class SWAPIDetailActivity extends AppCompatActivity {
     private TextView CharEye_color;
     private TextView CharBirth_year;
     private TextView CharGender;
+    private String units;
+    private double divisor;
 
     private SWAPIUtils.SWAPIItem mswapiItem;
 
@@ -34,6 +36,18 @@ public class SWAPIDetailActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast_item_detail);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String forecastUnits = sharedPreferences.getString(getString(R.string.pref_key), getString(R.string.pref_default));
+
+        if (forecastUnits.equals("Centimeters")){
+            units = "cm";
+            divisor = 1;
+        } else {
+            units = "In";
+            divisor = 2.5;
+        }
+
 
         //textview findings
         CharName = (TextView) findViewById(R.id.tv_char_name);
@@ -63,7 +77,7 @@ public class SWAPIDetailActivity extends AppCompatActivity {
     //fill in layout
     private void fillInLayoutText(SWAPIUtils.SWAPIItem swapitem) {
         String CharNaem = "Character: " + swapitem.name;
-        String CharHeihgt = "Height: " + swapitem.height + "cm";
+        String CharHeihgt = "Height: " + swapitem.height/divisor + units;
         String CharMsas = "Mass: " + swapitem.mass;
         String CharHair_coolr = "Hair Color: " + swapitem.hair_color;
         String CharSkin_coolr = "Skin Color: " + swapitem.skin_color;
