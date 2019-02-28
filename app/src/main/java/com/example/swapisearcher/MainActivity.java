@@ -122,11 +122,11 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //load SWAPI
         //load
         loadSWAPI();
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        //getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
 
         Log.d("refreshDisplay", "Refresh Display was called");
-        loadSWAPI();
+        //loadSWAPI();
 
     }
 
