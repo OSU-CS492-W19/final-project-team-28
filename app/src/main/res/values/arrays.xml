@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="pref_categ">
+        <item>People</item>
+        <item>Planets</item>
+        <item>Species</item>
+        <item>Vehicles</item>
+        <item>Starships</item>
+        <item>Films</item>
+    </string-array>
+    <string-array name="pref_categ2">
+        <item>People</item>
+        <item>Planets</item>
+        <item>Species</item>
+        <item>Vehicles</item>
+        <item>Starships</item>
+        <item>Films</item>
+    </string-array>
+
+
+
     <string-array name="pref_units">
         <item>Inches</item>
         <item>Centimeters</item>
@@ -10,8 +29,8 @@
     </string-array>
 
     <string-array name="pref_lang">
-        <item>Common</item>
-        <item>Wookiee</item>
+    <item>Common</item>
+    <item>Wookiee</item>
     </string-array>
     <string-array name="pref_lang2">
         <item>Common</item>

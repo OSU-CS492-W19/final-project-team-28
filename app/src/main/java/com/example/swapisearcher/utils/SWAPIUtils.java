@@ -20,13 +20,18 @@ import java.util.TimeZone;
 
 public class SWAPIUtils {
     private final static String SWAPI_Base_URL = "https://swapi.co/api";
+
+    //make a pref for people, vehicles, films, species, starships, and planets
     private final static String SWAPI_People = "people";
+
     private final static String SWAPI_WOOKIE_FORMAT = "format";
     private final static String SWAPI_WOOKIE_WOOKIE = "wookiee";
-    private final static Boolean wookiepref= true;
+    //private final static Boolean wookiepref= true;
 
     public static class SWAPIItem implements Serializable{
         public static final String EXTRA_SWAPI_ITEM = "com.example.swapisearcher.utils.SWAPIItem.SearchResult";
+
+        //person arguments
         public String name;
         public double height;
         public String mass;
@@ -35,6 +40,64 @@ public class SWAPIUtils {
         public String eye_color;
         public String birth_year;
         public String gender;
+
+        //planet arguments
+        public String PlanName;
+        public String RotPer; //hours to rotate
+        public String OrbitPer; //days to rotate?
+        public String diameter; //km?
+        public String climate;
+        public String gravity;
+        public String terrain;
+        public String SurWat;
+        public String Popul;
+
+
+        //film arguments
+        public String title;
+        public String ep_id;
+        public String op_crawl;
+        public String director;
+        public String producer;
+        public String releasedt;
+
+        //starship arguments
+        public String ShipName;
+        public String ShipModel;
+        public String ShipManu;
+        public String ShipCost;
+        public String ShipLength; //The length of this starship in meters
+        public String ShipAtmospherespeed;
+        public String ShipCrew;
+        public String ShipPass;
+        public String ShipCargo;
+        public String ShipConsum;
+        public String ShipHyperdrive;
+        public String ShipMGLT; //megalights, speed i guess?
+
+        //species arguments
+
+        public String SpecName;
+        public String SpecClass;
+        public String SpecDesig;
+        public String SpecHeight;
+        public String SpecSkin;
+        public String SpecHair;
+        public String SpecEye;
+        public String SpecLife;
+
+        //vehicles arguments
+        public String VehiName;
+        public String VehiModel;
+        public String VehiManu;
+        public String VehiCost;
+        public String VehiLength;//meters
+        public String VehiAtmos;
+        public String VehiCrew;
+        public String VehiPass;
+        public String VehiCargo;
+        public String VehiConsum;
+        public String VehiClass;
 
         //public String name;
     }
