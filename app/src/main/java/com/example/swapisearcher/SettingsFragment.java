@@ -6,18 +6,25 @@ import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
+import java.util.List;
+
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        ListPreference userCata = (ListPreference)findPreference(getString(R.string.pref_cata_key));
         ListPreference userUnits = (ListPreference)findPreference(getString(R.string.pref_key));
         ListPreference userLang = (ListPreference)findPreference(getString(R.string.pref_Lang_key));
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+    ListPreference lp3 = (ListPreference)findPreference(getString(R.string.pref_cata_key));
+    CharSequence entry3 = lp3.getEntry(); //delete
+    String val3 = lp3.getValue();
+
     ListPreference lp = (ListPreference)findPreference(getString(R.string.pref_key));
     CharSequence entry = lp.getEntry(); //delete
     String val = lp.getValue();

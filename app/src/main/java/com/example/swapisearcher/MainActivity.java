@@ -83,13 +83,14 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
             }
         };
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        //String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
+        String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
 
         getSupportActionBar().setElevation(0);
 
         //set header text
         mSWAPIMainTV = findViewById(R.id.tv_forecast_location);
-        mSWAPIMainTV.setText("Characters");
+        mSWAPIMainTV.setText(cata);
 
 
         //error checks
@@ -181,10 +182,11 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
         SharedPreferences sharedPreferences = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this);
         String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
+        String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
 
 
         //build URL
-        String SWAPIURL = SWAPIUtils.buildSWAPIURL(Lang);
+        String SWAPIURL = SWAPIUtils.buildSWAPIURL(Lang, cata);
         Log.d(TAG, "built the url for SWAPI " + SWAPIURL); //implement tag
 
         //place in loader and initalize
@@ -213,14 +215,14 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //load pref
         SharedPreferences sharedPreferences = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this);
         String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
-
+        String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
         //on load finished
         Log.d("onLoadFinished", "-- Got cached JSON data from loader. --");
         mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
         if (s != null) {
             mLoadingErrorMessageTV.setVisibility(View.INVISIBLE);
             mForecastItemsRV.setVisibility(View.VISIBLE);
-            mSWAPIStuff = SWAPIUtils.parseSWAPIJSON(s, Lang);
+            mSWAPIStuff = SWAPIUtils.parseSWAPIJSON(s, Lang, cata);
             swapiAdapter.updateSWAPIITems(mSWAPIStuff);
         } else {
             mForecastItemsRV.setVisibility(View.INVISIBLE);
