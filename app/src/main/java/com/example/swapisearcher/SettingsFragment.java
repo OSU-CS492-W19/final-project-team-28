@@ -14,12 +14,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         super.onCreate(savedInstanceState);
 
         ListPreference userUnits = (ListPreference)findPreference(getString(R.string.pref_key));
+        ListPreference userLang = (ListPreference)findPreference(getString(R.string.pref_Lang_key));
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     ListPreference lp = (ListPreference)findPreference(getString(R.string.pref_key));
     CharSequence entry = lp.getEntry(); //delete
     String val = lp.getValue();
+
+
+    ListPreference lp2 = (ListPreference)findPreference(getString(R.string.pref_Lang_key));
+    CharSequence entry2 = lp2.getEntry(); //delete
+    String val2 = lp2.getValue();
     //WeatherPreferences.setUnits(val);
     }
 

@@ -9,6 +9,7 @@ import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -76,22 +77,22 @@ public class SWAPIDetailActivity extends AppCompatActivity {
 
     //fill in layout
     private void fillInLayoutText(SWAPIUtils.SWAPIItem swapitem) {
-        String CharNaem = "Character: " + swapitem.name;
-        String CharHeihgt = "Height: " + swapitem.height/divisor + units;
-        String CharMsas = "Mass: " + swapitem.mass;
-        String CharHair_coolr = "Hair Color: " + swapitem.hair_color;
-        String CharSkin_coolr = "Skin Color: " + swapitem.skin_color;
-        String CharEye_coolr = "Eye Color: " + swapitem.eye_color;
-        String CharBirth_yaer = "Birth Year: " + swapitem.birth_year;
-        String Genedr = "Gender: " + swapitem.gender;
+        String CharNaem = "<b>Character: </b>" + swapitem.name;
+        String CharHeihgt = "<b>Height: </b>" + swapitem.height/divisor + units;
+        String CharMsas = "<b>Mass: </b>" + swapitem.mass;
+        String CharHair_coolr = "<b>Hair Color: </b>" + swapitem.hair_color;
+        String CharSkin_coolr = "<b>Skin Color: </b>" + swapitem.skin_color;
+        String CharEye_coolr = "<b>Eye Color: </b>" + swapitem.eye_color;
+        String CharBirth_yaer = "<b>Birth Year: </b>" + swapitem.birth_year;
+        String Genedr = "<b>Gender: </b>" + swapitem.gender;
 
-        CharName.setText(CharNaem);
-        CharHeight.setText(CharHeihgt);
-        CharMass.setText(CharMsas);
-        CharHair_color.setText(CharHair_coolr);
-        CharSkin_color.setText(CharSkin_coolr);
-        CharEye_color.setText(CharEye_coolr);
-        CharBirth_year.setText(CharBirth_yaer);
-        CharGender.setText(Genedr);
+        CharName.setText(Html.fromHtml(CharNaem));
+        CharHeight.setText(Html.fromHtml(CharHeihgt));
+        CharMass.setText(Html.fromHtml(CharMsas));
+        CharHair_color.setText(Html.fromHtml(CharHair_coolr));
+        CharSkin_color.setText(Html.fromHtml(CharSkin_coolr));
+        CharEye_color.setText(Html.fromHtml(CharEye_coolr));
+        CharBirth_year.setText(Html.fromHtml(CharBirth_yaer));
+        CharGender.setText(Html.fromHtml(Genedr));
     }
 }

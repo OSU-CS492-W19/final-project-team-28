@@ -11,4 +11,9 @@
     <string name="pref_title">Measurement Units</string>
     <string name="pref_dir">Choose a unit of Height Measurement:</string>
     <string name="pref_default">imperial</string>
+
+    <string name="pref_Lang_key">pref_lang</string>
+    <string name="pref_Lang_title">Language</string>
+    <string name="pref_Lang_dir">Choose a Language:</string>
+    <string name="pref_Lang_default">Common</string>
 </resources>

@@ -122,11 +122,11 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //load SWAPI
         //load
         loadSWAPI();
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        //getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
 
         Log.d("refreshDisplay", "Refresh Display was called");
-        loadSWAPI();
+        //loadSWAPI();
 
     }
 
@@ -179,9 +179,12 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
     public void loadSWAPI(){
         //get prefs
 
+        SharedPreferences sharedPreferences = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
+
 
         //build URL
-        String SWAPIURL = SWAPIUtils.buildSWAPIURL();
+        String SWAPIURL = SWAPIUtils.buildSWAPIURL(Lang);
         Log.d(TAG, "built the url for SWAPI " + SWAPIURL); //implement tag
 
         //place in loader and initalize
@@ -207,7 +210,9 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String s) {
-
+        //load pref
+        SharedPreferences sharedPreferences = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
 
         //on load finished
         Log.d("onLoadFinished", "-- Got cached JSON data from loader. --");
@@ -215,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         if (s != null) {
             mLoadingErrorMessageTV.setVisibility(View.INVISIBLE);
             mForecastItemsRV.setVisibility(View.VISIBLE);
-            mSWAPIStuff = SWAPIUtils.parseSWAPIJSON(s);
+            mSWAPIStuff = SWAPIUtils.parseSWAPIJSON(s, Lang);
             swapiAdapter.updateSWAPIITems(mSWAPIStuff);
         } else {
             mForecastItemsRV.setVisibility(View.INVISIBLE);
