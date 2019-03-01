@@ -8,4 +8,13 @@
         android:entries="@array/pref_units"
         android:entryValues="@array/pref_units2"
         android:defaultValue="@string/pref_default" />
+
+    <ListPreference
+        android:key="@string/pref_Lang_key"
+        android:title="@string/pref_Lang_title"
+        android:summary="%s"
+        android:dialogTitle="@string/pref_Lang_dir"
+        android:entries="@array/pref_lang"
+        android:entryValues="@array/pref_lang2"
+        android:defaultValue="@string/pref_Lang_default" />
 </PreferenceScreen>

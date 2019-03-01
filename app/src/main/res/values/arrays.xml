@@ -8,4 +8,13 @@
         <item>Inches</item>
         <item>Centimeters</item>
     </string-array>
+
+    <string-array name="pref_lang">
+        <item>Common</item>
+        <item>Wookiee</item>
+    </string-array>
+    <string-array name="pref_lang2">
+        <item>Common</item>
+        <item>Wookiee</item>
+    </string-array>
 </resources>
