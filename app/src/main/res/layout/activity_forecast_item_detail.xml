@@ -17,7 +17,7 @@
         android:layout_height="128dp" />
 
     <TextView
-        android:id="@+id/tv_char_name"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
@@ -27,7 +27,7 @@
         />
 
     <TextView
-        android:id="@+id/tv_char_height"
+        android:id="@+id/tv_Detail1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
@@ -35,7 +35,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tv_char_mass"
+        android:id="@+id/tv_Detail2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
@@ -43,7 +43,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tv_char_hair"
+        android:id="@+id/tv_Detail3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
@@ -51,28 +51,70 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tv_char_skin"
+        android:id="@+id/tv_Detail4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_marginLeft="12dp"
         android:textSize="18sp" />
     <TextView
-        android:id="@+id/tv_char_eye"
+        android:id="@+id/tv_Detail5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_marginLeft="12dp"
         android:textSize="18sp" />
     <TextView
-        android:id="@+id/tv_char_birth"
+        android:id="@+id/tv_Detail6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_marginLeft="12dp"
         android:textSize="18sp" />
     <TextView
-        android:id="@+id/tv_char_gender"
+    android:id="@+id/tv_Detail7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:layout_marginLeft="12dp"
+    android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_Detail13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"

@@ -20,12 +20,12 @@
 
 
     <string-array name="pref_units">
-        <item>Inches</item>
-        <item>Centimeters</item>
+        <item>Metric</item>
+        <item>Imperial</item>
     </string-array>
     <string-array name="pref_units2">
-        <item>Inches</item>
-        <item>Centimeters</item>
+        <item>Metric</item>
+        <item>Imperial</item>
     </string-array>
 
     <string-array name="pref_lang">
