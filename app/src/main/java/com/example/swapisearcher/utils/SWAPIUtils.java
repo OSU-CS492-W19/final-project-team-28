@@ -34,7 +34,7 @@ public class SWAPIUtils {
         //person arguments
         public String name;
         public double height;
-        public String mass;
+        public double mass;
         public String hair_color;
         public String skin_color;
         public String eye_color;
@@ -81,7 +81,7 @@ public class SWAPIUtils {
         public String SpecName;
         public String SpecClass;
         public String SpecDesig;
-        public String SpecHeight;
+        public double SpecHeight;
         public String SpecSkin;
         public String SpecHair;
         public String SpecEye;
@@ -157,7 +157,7 @@ public class SWAPIUtils {
                         //String CharName = SWAPIListElem.getString("name");
                         swapiItem.name = SWAPIListElem.getString("whrascwo");
                         swapiItem.height = SWAPIListElem.getInt("acwoahrracao");
-                        swapiItem.mass = SWAPIListElem.getString("scracc");
+                        swapiItem.mass = SWAPIListElem.getInt("scracc");
                         swapiItem.hair_color = SWAPIListElem.getString("acraahrc_oaooanoorc");
                         swapiItem.skin_color = SWAPIListElem.getString("corahwh_oaooanoorc");
                         swapiItem.eye_color = SWAPIListElem.getString("worowo_oaooanoorc");
@@ -166,7 +166,7 @@ public class SWAPIUtils {
                     } else {
                         swapiItem.name = SWAPIListElem.getString("name");
                         swapiItem.height = SWAPIListElem.getInt("height");
-                        swapiItem.mass = SWAPIListElem.getString("mass");
+                        swapiItem.mass = SWAPIListElem.getInt("mass");
                         swapiItem.hair_color = SWAPIListElem.getString("hair_color");
                         swapiItem.skin_color = SWAPIListElem.getString("skin_color");
                         swapiItem.eye_color = SWAPIListElem.getString("eye_color");
@@ -208,7 +208,7 @@ public class SWAPIUtils {
                         swapiItem.name = SWAPIListElem.getString("whrascwo");
                         swapiItem.SpecClass = SWAPIListElem.getString("oaanraccahwwahoaraaoahoowh");
                         swapiItem.SpecDesig = SWAPIListElem.getString("wawocahrrwhraaoahoowh");
-                        swapiItem.SpecHeight = SWAPIListElem.getString("rahoworcrarrwo_acwoahrracao");
+                        swapiItem.SpecHeight = SWAPIListElem.getInt("rahoworcrarrwo_acwoahrracao");
                         swapiItem.SpecSkin = SWAPIListElem.getString("corahwh_oaooanoorcc");
                         swapiItem.SpecHair = SWAPIListElem.getString("acraahrc_oaooanoorcc");
                         swapiItem.SpecEye = SWAPIListElem.getString("worowo_oaooanoorcc");
@@ -220,7 +220,7 @@ public class SWAPIUtils {
                         swapiItem.name = SWAPIListElem.getString("name");
                         swapiItem.SpecClass = SWAPIListElem.getString("classification");
                         swapiItem.SpecDesig = SWAPIListElem.getString("designation");
-                        swapiItem.SpecHeight = SWAPIListElem.getString("average_height");
+                        swapiItem.SpecHeight = SWAPIListElem.getInt("average_height");
                         swapiItem.SpecSkin = SWAPIListElem.getString("skin_colors");
                         swapiItem.SpecHair = SWAPIListElem.getString("hair_colors");
                         swapiItem.SpecEye = SWAPIListElem.getString("eye_colors");
