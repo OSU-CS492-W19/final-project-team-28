@@ -44,6 +44,12 @@ public class SWAPIDetailActivity extends AppCompatActivity {
     private double Mdivisor;
     private double KMdivisor;
 
+    //weight designations
+    private String KGunits;
+
+    //weight conversion
+    private double KGdivisor;
+
     private SWAPIUtils.SWAPIItem mswapiItem;
 
     @Override
@@ -65,13 +71,23 @@ public class SWAPIDetailActivity extends AppCompatActivity {
             CMdivisor = 1;
             Mdivisor = 1;
             KMdivisor = 1;
+
+            KGunits = " kg";
+
+            KGdivisor = 1;
         } else {
+
+
             CMLengthunits = " in";
             MLengthunits = " Yards";
             KMLengthunits = " Miles";
+
             CMdivisor = 2.5;
             Mdivisor = 1.094;
             KMdivisor = 1.60934;
+
+            KGunits = " lbs";
+            KGdivisor = 2.205;
         }
 
 
@@ -117,7 +133,7 @@ public class SWAPIDetailActivity extends AppCompatActivity {
         if(cata.equals("People")) {
             String Name2 = "<b>Character: </b>" + swapitem.name;
             String CharHeihgt = "<b>Height: </b>" + swapitem.height / CMdivisor + CMLengthunits;
-            String CharMsas = "<b>Mass: </b>" + swapitem.mass + " kg";
+            String CharMsas = "<b>Mass: </b>" + swapitem.mass * KGdivisor + KGunits;
             String CharHair_coolr = "<b>Hair Color: </b>" + swapitem.hair_color;
             String CharSkin_coolr = "<b>Skin Color: </b>" + swapitem.skin_color;
             String CharEye_coolr = "<b>Eye Color: </b>" + swapitem.eye_color;
