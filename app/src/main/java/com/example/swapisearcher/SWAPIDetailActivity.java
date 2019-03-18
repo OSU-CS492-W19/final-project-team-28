@@ -5,6 +5,7 @@ package com.example.swapisearcher;
 //normals
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ import android.widget.TextView;
 import com.example.swapisearcher.utils.SWAPIUtils;
 
 public class SWAPIDetailActivity extends AppCompatActivity {
+
+    private final static String wookie_Base_URL = "https://starwars.fandom.com/wiki/Special:Search";
+    private final static String queryparam = "query";
 
     private TextView Name;
     private TextView Detail1;
@@ -134,6 +138,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
         case R.id.action_share:
             shareRepo();
             return true;
+        case R.id.action_view_on_web:
+            searchWookie();
+            return true;
         default:
             return super.onOptionsItemSelected(item);
     }
@@ -150,6 +157,17 @@ public void shareRepo() {
                 .setChooserTitle(R.string.share_chooser_title)
                 .startChooser();
     }
+}
+
+public void searchWookie(){
+        if (mswapiItem != null){
+            Uri wookieUri;
+            wookieUri = Uri.parse(wookie_Base_URL).buildUpon().appendQueryParameter(queryparam, mswapiItem.name).build();
+            Intent intent = new Intent(Intent.ACTION_VIEW, wookieUri);
+            if(intent.resolveActivity(getPackageManager()) !=null){
+                startActivity(intent);
+            }
+        }
 }
 
 
