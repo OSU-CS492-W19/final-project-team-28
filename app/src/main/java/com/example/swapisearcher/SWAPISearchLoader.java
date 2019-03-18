@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
-
 import android.util.Log;
 
 import com.example.swapisearcher.utils.NetworkUtils;
@@ -16,7 +15,7 @@ public class SWAPISearchLoader extends AsyncTaskLoader<String>{
 
     private static final String TAG = SWAPISearchLoader.class.getSimpleName();
 
-    private String mSWAPIAdapter;
+    private String mSWAPIAdapterJSON;
     private String mSWAPISearchURL;
     //private static final int GITHUB_SEARCH_LOADER_ID = 0;
 
@@ -33,9 +32,9 @@ public class SWAPISearchLoader extends AsyncTaskLoader<String>{
             //forceLoad();
             //forceLoad();
             Log.d(TAG, "made it here");
-            if (mSWAPIAdapter != null) {
+            if (mSWAPIAdapterJSON != null) {
                 Log.d(TAG, "Delivering cached results");
-                deliverResult(mSWAPIAdapter);
+                deliverResult(mSWAPIAdapterJSON);
             } else {
                 forceLoad();
             }
@@ -63,7 +62,7 @@ public class SWAPISearchLoader extends AsyncTaskLoader<String>{
 
     @Override
     public void deliverResult(@Nullable String data) {
-        mSWAPIAdapter = data;
+        mSWAPIAdapterJSON = data;
         super.deliverResult(data);
     }
 

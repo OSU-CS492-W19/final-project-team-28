@@ -121,9 +121,38 @@ public class SWAPIDetailActivity extends AppCompatActivity {
 //options menu
 
 //on options item selected
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.swapi_detail, menu);
+    return true;
+}
 
+//get item selected (share character)
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.action_share:
+            shareRepo();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+}
 
 //share character
+public void shareRepo() {
+    if (mswapiItem != null) {
+        //String wow = R.string.share_chooser_title;
+        String shareText = getString(R.string.share_repo_text, mswapiItem.name, "On the SWAPISearcher");
+        ShareCompat.IntentBuilder.from(this)
+                .setType("text/plain")
+                .setText(shareText)
+                .setChooserTitle(R.string.share_chooser_title)
+                .startChooser();
+    }
+}
+
+
 
     //fill in layout
     private void fillInLayoutText(SWAPIUtils.SWAPIItem swapitem) {
