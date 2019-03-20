@@ -15,6 +15,11 @@
         android:padding="4dp"
         android:layout_width="128dp"
         android:layout_height="128dp" />
+    <ImageView
+        android:id="@+id/iv_repo_bookmark"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_bookmark_border_black_24dp"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -120,5 +125,4 @@
         android:padding="4dp"
         android:layout_marginLeft="12dp"
         android:textSize="18sp" />
-
 </LinearLayout>
