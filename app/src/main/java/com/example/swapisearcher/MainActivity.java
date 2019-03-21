@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.v7.preference.ListPreference;
 
 //import com.example.android.lifecycleweather.data.WeatherPreferences;
 import com.example.swapisearcher.data.SWAPI_Repo;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
     private SWAPIAdapter swapiAdapter;
 
     private DrawerLayout mDrawerLayout;
+    private  NavigationView mNavigationView;
     private Boolean bDrawerIsOpen = false;
 
     private RecyclerView mSavedRV;
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
                 refreshDisplay();
             }
         };
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         //String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
         String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
 
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         swapiAdapter = new SWAPIAdapter(this);
         mForecastItemsRV.setAdapter(swapiAdapter);
 
+        /*
         mSavedRV = findViewById(R.id.rv_saved_SWAPI);
         mSavedAdapter = new Saved_SWAPI_Adapter(this);
         mSavedRV.setAdapter(mSavedAdapter);
@@ -140,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
                 mSavedAdapter.updateRepoList(repos);
             }
         });
+        /**/
 
 
         //lifecycle events key
@@ -159,7 +163,23 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //load default prefs
         //PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
+
+        mNavigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawers();
+
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+                        changeCataPref(menuItem.getTitle().toString());
+                        return true;
+                    }
+                });
 
         //load SWAPI
         //load
@@ -305,14 +325,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
                 showPreferences();
                 return true;
             case android.R.id.home:
-                if(!bDrawerIsOpen) {
                     mDrawerLayout.openDrawer(GravityCompat.START);
-                    bDrawerIsOpen = true;
-                }
-                else{
-                    mDrawerLayout.closeDrawers();
-                    bDrawerIsOpen = false;
-                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -325,4 +338,10 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         Intent preferences = new Intent(this, SettingsActivity.class);
         startActivity(preferences);
     }
+    public void changeCataPref(String t){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(getString(R.string.pref_cata_key), t);
+        editor.apply();
+    };
 }
