@@ -198,9 +198,12 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
         getSupportActionBar().setElevation(0);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
+        String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
         //set header text
         mSWAPIMainTV = findViewById(R.id.tv_forecast_location);
-        mSWAPIMainTV.setText("Characters");
+        mSWAPIMainTV.setText(cata);
 
 
         //error checks
@@ -343,5 +346,6 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(getString(R.string.pref_cata_key), t);
         editor.apply();
-    };
+        refreshDisplay();
+    }
 }
