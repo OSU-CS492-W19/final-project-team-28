@@ -119,6 +119,8 @@ public class SWAPIDetailActivity extends AppCompatActivity {
             fillInLayoutText(mswapiItem);
         }
 
+
+
     }
 
 

@@ -1,4 +1,8 @@
 package com.example.swapisearcher;
+import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -7,8 +11,12 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.support.v7.preference.PreferenceManager;
@@ -21,16 +29,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.arch.lifecycle.ViewModelProviders;
 
 //import com.example.android.lifecycleweather.data.WeatherPreferences;
+import com.example.swapisearcher.data.SWAPI_Repo;
 import com.example.swapisearcher.utils.NetworkUtils;
 import com.example.swapisearcher.utils.SWAPIUtils;
 //import com.example.android.lifecycleweather.utils.OpenWeatherMapUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSWAPIItemClickListener, LoaderManager.LoaderCallbacks<String>{
+public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSWAPIItemClickListener, LoaderManager.LoaderCallbacks<String>, Saved_SWAPI_Adapter.OnSavedItemClickListener{
 
     //display stuff
     private TextView mSWAPIMainTV;
@@ -38,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
     private ProgressBar mLoadingIndicatorPB;
     private TextView mLoadingErrorMessageTV;
     private SWAPIAdapter swapiAdapter;
+
+    private DrawerLayout mDrawerLayout;
+    private Boolean bDrawerIsOpen = false;
+
+    private RecyclerView mSavedRV;
+    private Saved_SWAPI_Adapter mSavedAdapter;
+    private SavedSWAPIViewModel mSavedViewModel;
 
 
     //log
@@ -86,7 +104,14 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //String Lang = sharedPreferences.getString(getString(R.string.pref_Lang_key), getString(R.string.pref_default));
         String cata = sharedPreferences.getString(getString(R.string.pref_cata_key), getString(R.string.pref_default));
 
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        // Remove shadow under action bar.
         getSupportActionBar().setElevation(0);
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+
 
         //set header text
         mSWAPIMainTV = findViewById(R.id.tv_forecast_location);
@@ -101,6 +126,21 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         mForecastItemsRV = findViewById(R.id.rv_forecast_items);
         swapiAdapter = new SWAPIAdapter(this);
         mForecastItemsRV.setAdapter(swapiAdapter);
+
+        mSavedRV = findViewById(R.id.rv_saved_SWAPI);
+        mSavedAdapter = new Saved_SWAPI_Adapter(this);
+        mSavedRV.setAdapter(mSavedAdapter);
+        mSavedRV.setLayoutManager(new LinearLayoutManager(this));
+        mSavedRV.setHasFixedSize(true);
+
+        mSavedViewModel = ViewModelProviders.of(this).get(SavedSWAPIViewModel.class);
+        mSavedViewModel.getAllRepos().observe(this, new Observer<List<SWAPI_Repo>>(){
+            @Override
+            public void onChanged(@Nullable List<SWAPI_Repo> repos){
+                mSavedAdapter.updateRepoList(repos);
+            }
+        });
+
 
         //lifecycle events key
         if(savedInstanceState != null && savedInstanceState.containsKey(LIFECYCLE_EVENTS_TEXT_KEY)){
@@ -119,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         //load default prefs
         //PreferenceManager.setDefaultValues(this, R.xml.prefs, true);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         //load SWAPI
         //load
@@ -245,7 +286,10 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
 
         intent.putExtra(SWAPIUtils.SWAPIItem.EXTRA_SWAPI_ITEM, swapiItem);
         startActivity(intent);
+    }
 
+    @Override
+    public void onSavedItemClick(SWAPI_Repo repo){
 
     }
 
@@ -259,6 +303,16 @@ public class MainActivity extends AppCompatActivity implements SWAPIAdapter.OnSW
         switch (item.getItemId()) {
             case R.id.action_settings:
                 showPreferences();
+                return true;
+            case android.R.id.home:
+                if(!bDrawerIsOpen) {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                    bDrawerIsOpen = true;
+                }
+                else{
+                    mDrawerLayout.closeDrawers();
+                    bDrawerIsOpen = false;
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
